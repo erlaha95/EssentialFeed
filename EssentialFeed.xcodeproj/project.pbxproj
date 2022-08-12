@@ -11,6 +11,7 @@
 		E026A33C28A3F4820006128F /* EssentialFeedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E026A33B28A3F4820006128F /* EssentialFeedTests.swift */; };
 		E026A33D28A3F4820006128F /* EssentialFeed.h in Headers */ = {isa = PBXBuildFile; fileRef = E026A33128A3F4820006128F /* EssentialFeed.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E026A34728A3F4AF0006128F /* FeedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E026A34628A3F4AF0006128F /* FeedItem.swift */; };
+		E026A35128A665B50006128F /* FeedLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E026A35028A665B50006128F /* FeedLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,7 @@
 		E026A33628A3F4820006128F /* EssentialFeedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EssentialFeedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E026A33B28A3F4820006128F /* EssentialFeedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EssentialFeedTests.swift; sourceTree = "<group>"; };
 		E026A34628A3F4AF0006128F /* FeedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItem.swift; sourceTree = "<group>"; };
+		E026A35028A665B50006128F /* FeedLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,8 +73,8 @@
 		E026A33028A3F4820006128F /* EssentialFeed */ = {
 			isa = PBXGroup;
 			children = (
+				E026A34F28A6659E0006128F /* Feed Feature */,
 				E026A33128A3F4820006128F /* EssentialFeed.h */,
-				E026A34628A3F4AF0006128F /* FeedItem.swift */,
 			);
 			path = EssentialFeed;
 			sourceTree = "<group>";
@@ -83,6 +85,15 @@
 				E026A33B28A3F4820006128F /* EssentialFeedTests.swift */,
 			);
 			path = EssentialFeedTests;
+			sourceTree = "<group>";
+		};
+		E026A34F28A6659E0006128F /* Feed Feature */ = {
+			isa = PBXGroup;
+			children = (
+				E026A34628A3F4AF0006128F /* FeedItem.swift */,
+				E026A35028A665B50006128F /* FeedLoader.swift */,
+			);
+			path = "Feed Feature";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -195,6 +206,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E026A35128A665B50006128F /* FeedLoader.swift in Sources */,
 				E026A34728A3F4AF0006128F /* FeedItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

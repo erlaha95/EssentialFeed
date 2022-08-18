@@ -75,6 +75,32 @@ class RemoteFeedLoaderTests: XCTestCase {
         }
     }
     
+    func test_load_deliversItemsOn200HTTPResponseWithJSONItems() {
+        let (sut, client) = makeSUT()
+        
+        let item1 = makeItem(
+            id: UUID(),
+            description: nil,
+            location: nil,
+            imageURL: URL(string: "https://a-url.com")!
+        )
+        
+        
+        let item2 = makeItem(
+            id: UUID(),
+            description: "a description",
+            location: "a location",
+            imageURL: URL(string: "https://another-url.com")!
+        )
+        
+        let items = [item1.model, item2.model]
+        
+        expect(sut, toCompleteWith: .success(items)) {
+            let data = makeDataFromJSONList([item1.json, item2.json])
+            client.complete(withStatusCode: 200, data: data)
+        }
+    }
+    
     // MARK: - Helpers
     private func makeSUT(
         url: URL = URL(string: "https://a-given-url.com")!
@@ -97,6 +123,39 @@ class RemoteFeedLoaderTests: XCTestCase {
         action()
         
         XCTAssertEqual(capturedResults, [result], file: file, line: line)
+    }
+    
+    private func makeItem(
+        id: UUID,
+        description: String? = nil,
+        location: String? = nil,
+        imageURL: URL
+    ) -> (model: FeedItem, json: [String: Any]) {
+        
+        let item = FeedItem(
+            id: id,
+            description: description,
+            location: location,
+            imageURL: imageURL
+        )
+        
+        let json = [
+            "id": item.id.uuidString,
+            "description": item.description,
+            "location": item.location,
+            "image": item.imageURL.absoluteString
+        ].reduce(into: [String: Any]()) { acc, el in
+            if let value = el.value {
+                acc[el.key] = value
+            }
+        }
+        
+        return (item, json)
+    }
+    
+    private func makeDataFromJSONList(_ items: [[String: Any]]) -> Data {
+        let itemsJSON = ["items": items]
+        return try! JSONSerialization.data(withJSONObject: itemsJSON)
     }
     
     private class HTTPClientSpy: HTTPClient {
